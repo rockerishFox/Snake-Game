@@ -28,6 +28,9 @@ class Cube():
 
         pygame.draw.rect(window, self.__color, (i * dist + 1, j * dist + 1, dist - 1, dist - 1))
 
+    def __eq__(self, o):
+        return self.pos == o.pos
+
 
 class Snake():
     body = []
@@ -129,7 +132,7 @@ def generateFood(rows, snek):
         x = random.randrange(rows)
         y = random.randrange(rows)
 
-        if len(list(filter(lambda x: x.pos == (x, y), position))) > 0:
+        if Cube(x,y) in position:
             continue
         else:
             break
